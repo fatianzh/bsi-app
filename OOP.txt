@@ -1,0 +1,62 @@
+
+OOP
+Object Oriented Programming
+--------------------------
+Object UMUM => Human, Benda, Hewan, Tumbuhan
+Object APP => Screen, Component, Function
+
+HOME
+ DATA PROMOSI
+ DATA TOP PRODUCTS
+ GET DATA PROMOSI 10%
+ GET DATA TOP PRODUCTS
+
+------------------------------------------
+1. INHERITANCE
+------------------------------------------
+
+HOME JURAGAN extend HOME
+
+HOME ANAK SULTAN extend HOME
+
+
+class HOME 
+class HOMEJURAGAN extend HOME
+
+HOME => return jsx 
+HOMEJURAGAN => import HOME return HOME
+
+// TOKOPEDIA => GUEST | LOGGED IN
+// HomeCore 
+// HomeForGuest => import HomeCore modified for guest
+// HomeForLoggedIn => import HomeCore modified for LOGGED IN
+
+------------------------------------------
+2. POLYMORHISM
+------------------------------------------
+
+HOME JURAGAN extends HOME
+ overrided GET DATA PROMOSI 10% => 20%
+
+class HOME 
+class HOMEJURAGAN extend HOME
+ overrided GET DATA PROMOSI 20%
+
+HOME => return jsx 
+HOMEJURAGAN => import HOME return HOME
+
+
+------------------------------------------
+3. ENCAPSULATION
+------------------------------------------
+HOME
+ private DATA PROMOSI
+ public DATA TOP PRODUCTS
+ private GET DATA PROMOSI 10%
+ public GET DATA TOP PRODUCTS
+
+
+------------------------------------------
+4. ABSTRACTION
+------------------------------------------
+Custom Hooks 
