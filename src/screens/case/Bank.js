@@ -3,20 +3,20 @@ import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from "react-nati
 import { useState } from "react";
 
 export default function BankScreen({ name, balance, navigation }) {
-  name = "Struick";
-  balance = "238.350.000";
+  name = "fat's";
+  balance = 0;
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
         <View>
-          <Text style={{ fontSize: 16, fontFamily: "candara" }}>Hi {name}, this is your balance:</Text>
-          <Text style={{ fontSize: 40, fontWeight: "lighter",fontFamily: "geneve" }}>Rp. {balance}</Text>
+          <Text style={{ fontSize: 16 }}>Hi {name}, this is your balance:</Text>
+          <Text style={{ justifyContent: "absolute",fontSize: 30, fontWeight: "lighter" }}>Rp. {balance}</Text>
           <Text style = {balance === 0 ? {display: "flex", color:"#E53D30"} : {display: "none"}}>Immediately top up your balance</Text>
           <TouchableOpacity style={{ 
             backgroundColor: "indianred", 
             position: "absolute", 
-            right:10, 
-            bottom: 20,
+            right:5, 
+            bottom: 10,
             borderRadius:5, 
             padding:10}} 
             onPress={() => {try {
@@ -104,8 +104,7 @@ const styles = StyleSheet.create({
     textAlign: "left", 
     color: "black", 
     fontSize: 18, 
-    fontWeight: "800", 
-    fontFamily: "calibri",
+    fontWeight: "800",
     marginTop: 10, 
     marginBottom: 3, 
     marginHorizontal: 20, 

@@ -13,7 +13,10 @@ import FetchScreen from "./screens/Networking/Fetch"
 import AxiosScreen from "./screens/Networking/Axios";
 import PostScreen from "./screens/Networking/Post";
 import BankScreen from "./screens/case/Bank";
-import TestScreen from "./screens/case/Test";
+import TopUpScreen from "./screens/case/TopUp";
+import ReduxConcept from "./screens/ReduxConcept";
+import IntegrationRedux from "./screens/IntegrationRedux";
+import IntegrateFetchAPI from "./screens/FetchApi";
 
 const Stack = createStackNavigator();
 
@@ -32,8 +35,11 @@ const AppSrc = () => {
         <Stack.Screen name="Fetch" options={{}} component={FetchScreen} />
         <Stack.Screen name="Axios" options={{}} component={AxiosScreen} />
         <Stack.Screen name="Post" options={{}} component={PostScreen} />
+        <Stack.Screen name="ReduxConcept" options={{headerTitle: 'Redux Concept'}} component={ReduxConcept} />
+        <Stack.Screen name="IntegrationRedux" options={{headerTitle: 'Notes'}} component={IntegrationRedux} />
+        <Stack.Screen name="IntegrateFetchAPI" options={{headerTitle: 'Fetch API'}} component={IntegrateFetchAPI} />
         <Stack.Screen name="Bank" options={{}} component={BankScreen} />
-        <Stack.Screen name="Test" options={{}} component={TestScreen} />
+        <Stack.Screen name="TopUp" options={{headerTitle: 'Top Up'}} component={TopUpScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

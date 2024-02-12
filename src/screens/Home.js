@@ -47,14 +47,23 @@ const HomeScreen = ({ navigation }) => {
         title="Go to Post"
         onPress={() => navigation.navigate('Post')}
       />
+      <Text>Redux Concept</Text>
+      <Button
+        title="Go to Redux"
+        onPress={() => navigation.navigate('ReduxConcept')}
+      />
+      <Button
+        title="Go to Notes"
+        onPress={() => navigation.navigate('IntegrationRedux')}
+      />
+      <Button
+        title="Go to Fetch API"
+        onPress={() => navigation.navigate('IntegrateFetchAPI')}
+      />
       <Text>Case Study</Text>
       <Button
         title="Go to Mobile Bank"
         onPress={() => navigation.navigate('Bank')}
-      />
-      <Button
-        title="Go to Test"
-        onPress={() => navigation.navigate('Test', {id: ''})}
       />
     </View>
   );

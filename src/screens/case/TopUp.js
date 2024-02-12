@@ -1,50 +1,82 @@
-import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity } from "react-native";
-import { useState } from "react";
-import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
+import React, { useState } from "react";
+import { ActivityIndicator, TouchableOpacity, Text, TextInput, View } from "react-native";
 
-// export default function TopUpScreen() {
-//   const [nominal, setNominal] = useState("0");
-//   return (
-//     <View style={styles.container}>
-//       <TextInput
-//         value={nominal}
-//         onChangeText={setNominal}
-//         style={{
-//           height: 40,
-//           borderRadius: 4,
-//           borderWidth: 1,
-//           minWidth: 400,
-//           marginBottom: 5,
-//         }}
-//       />
-//       <Button title="Top Up" onPress={() => {console.log(nominal)}} />
-//     </View>
-//   );
-// }
+const TopUpScreen = ({ navigation }) => {
+  const [nominal, setNominal] = useState("");
+  const [errorNominal, setErrorNominal] = useState("");
 
-export default function TopUpScreen() {
+  const [loadingAxios, setLoadingAxios] = useState("");
+  const [resultAxios, setResultAxios] = useState("");
+
+  const submitWithAxios = () => {
+      if (!nominal) {
+        setErrorNominal("Nominal is required");
+      return;
+      }
+    const payload = {
+      nominal: nominal,
+    };
+    setLoadingAxios(true);
+    axios({
+      baseURL: "https://reqres.in",
+      url: "/api/users",
+      method: "POST",
+      data: payload,
+    })
+      .then((response) => {
+        setLoadingAxios(false);
+        setResultAxios("Balance Successfully Top Upped");
+        return response;
+      })
+      .catch((error) => {
+        setLoadingAxios(false);
+        console.error(error);
+      });
+  };
   return (
-    <View>
-      <View style={styles.container}>
-        <Text>Input nominal</Text>
-        <TextInput style={{ fontSize: 20, fontWeight: "bold"}}></TextInput>
+    <View style={{ padding: 20, backgroundColor: '#F0E68C', flex: 1 }}>
+      <Text style={{ fontWeight: "bold" }}>Top Up Balance</Text>
+      <TextInput
+        placeholder="Input Nominal"
+        placeholderTextColor={"#b8b8b8"}
+        value={nominal}
+        onChangeText={(text) => {
+          setNominal(text);
+          setErrorNominal("");
+        }}
+        style={{
+          borderRadius: 4,
+          height: 40,
+          paddingHorizontal: 10,
+          backgroundColor: "white",
+          marginTop: 10,
+        }}
+      />
+      {errorNominal && <Text style={{ color: "red" }}>{errorNominal}</Text>}
+      <View style={{ height: 20 }} />
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        {loadingAxios ? (
+          <ActivityIndicator />
+        ) : (
+          <TouchableOpacity onPress={submitWithAxios}
+          style={{ backgroundColor: "indianred",  
+          borderRadius:5, 
+          padding:10
+          }}>
+            <Text style={{textAlign: "center", color: "white"}}>
+              Top Up
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
-      <TouchableOpacity style={{ backgroundColor: "#E9967A", justifyContent: "absolute", width: 100, borderRadius: 10, marginTop: 5, left: 150, padding: 10}} onPress={() => navigation.navigate("TopUpScreen")}>
-        <Text style={{ textAlign: "center", color: "white"}}>
-          Top Up
-        </Text>
-      </TouchableOpacity>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        {resultAxios && (
+          <Text style={{ textAlign: "right", top: 5, fontWeight: "bold" }}>{resultAxios}</Text>
+        )}
+      </View>
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#D7D7D7",
-    alignItems: "center",
-    justifyContent: "center",
-    rowGap: 10,
-  },
-});
+export default TopUpScreen;
