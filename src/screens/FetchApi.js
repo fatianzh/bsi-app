@@ -2,20 +2,19 @@
 import React, { useEffect , useState} from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
-import { fetchProducts } from '../actions/action';
+import { fetchProducts } from '../action/actions';
 
 const IntegrateFetchAPI = ({ products, loading, error }) => {
-  const dispatch = useDispatch()
   
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
  
 
-  const getMovies = async () => {
+  const getProducts = async () => {
     try {
-      const response = await fetch('https://reactnative.dev/movies.json');
+      const response = await fetch('https://dummyjson.com/products');
       const json = await response.json();
-      setData(json.movies);
+      setData(json.products);
     } catch (error) {
       console.error(error);
     } finally {
@@ -24,20 +23,20 @@ const IntegrateFetchAPI = ({ products, loading, error }) => {
   };
 
   useEffect(() => {
-    fetchProducts()(dispatch);
+    getProducts();
   }, []);
   
   return (
     <View style={{flex: 1, padding: 24}}>
-      {loading ? (
+      {isLoading ? (
         <ActivityIndicator />
       ) : (
         <FlatList
-          data={products?.movies || []}
+          data={data}
           keyExtractor={({id}) => id}
           renderItem={({item}) => (
             <Text>
-              {item.title}, {item.releaseYear}
+              {item.title}, {item.description}
             </Text>
           )}
         />
